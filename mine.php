@@ -60,7 +60,7 @@ $ask = function ($what, $default) {
     $answer = readline($what . ' [' . $default . ']: ');
 
     if (!strlen($answer) || strtolower(trim($answer)) == $default) {
-        return $answer;
+        return true;
     }
 
     return false;
