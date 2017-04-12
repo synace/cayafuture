@@ -56,14 +56,10 @@ class cayafuture
     }
 }
 
-$ask = function ($what, $default) {
-    $answer = readline($what . ' [' . $default . ']: ');
+$yes = function ($ask) {
+    $answer = readline($ask . ' [Y]: ');
 
-    if (!strlen($answer) || strtolower(trim($answer)) == $default) {
-        return true;
-    }
-
-    return false;
+    return !strlen($answer) || strtolower(trim($answer)) == 'y';
 };
 
 $c = new cayafuture();
@@ -71,8 +67,7 @@ $c = new cayafuture();
 if (isset($argv[1])) {
     $address = $argv[1];
 } else {
-    $yes = $ask('Generate new wallet?', 'Y');
-    if ($yes) {
+    if ($yes('Generate new wallet?')) {
         $result = $c->generateWallet();
         $address = $result['data']['wallet'];
         echo 'Your wallet address: ' . $address . "\n";
@@ -82,15 +77,14 @@ if (isset($argv[1])) {
     }
 }
 
-$yes = $ask('Get balance?', 'Y');
-if ($yes) {
+if ($yes('Get balance?')) {
     $result = $c->getBalance($address);
     echo 'Your balance: ' . $result['data']['value'] . "\n";
 }
 
 $result = $c->status();
 $block = reset($result['data']);
-echo "COUNTHASH\n" . $block['counthash'] . "\n";
+echo "COUNTHASH: " . $block['counthash'] . "\n";
 
 echo "MINING!\n";
 while (true) {
