@@ -1,5 +1,7 @@
 # cayafuture mining script
 
+https://bitcointalk.org/index.php?topic=1863369.0
+
 First usage:
 
 ```
