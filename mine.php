@@ -6,7 +6,7 @@
 class cayafuture
 {
     const secure_url = 'https://cayafuture.com/api/';
-    const mine_url = 'http://mining.cayafuture.com/';
+    const mine_url = 'http://mining.cayafuture.com:2435/';
 
     public function mine($wallet)
     {
